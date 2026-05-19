@@ -1,0 +1,7 @@
+{
+  "watch": ["dist", ".env"],
+  "ext": "js,json,env",
+  "ignore": ["node_modules"],
+  "delay": 1000,
+  "exec": "node --env-file=.env dist/index.js"
+}
