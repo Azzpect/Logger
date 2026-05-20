@@ -3,7 +3,7 @@ export type RedisResponse = {
   message: Message;
 }
 export type Message = {
-  level: "INFO" | "ERROR";
+  level: string;
   service: string;
   message: string;
   timestamp: string;

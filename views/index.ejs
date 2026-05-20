@@ -1,0 +1,37 @@
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel="stylesheet" href="/public/styles.css">
+  </head>
+  <body>
+    <div id="container">
+      <div id="sidebar">
+        <h2>Log Files</h2>
+        <ul id="file-list">
+          <% fileList.forEach(item => { %>
+          <li><%= item %></li>
+          <% }) %>
+        </ul>
+      </div>
+      <div id="logger">
+        <h2>Logger</h2>
+        <% if (serviceList.length > 0) { %>
+          <ul id="service-list">
+            <% serviceList.forEach(item => { %>
+            <li><%= item %></li>
+            <% }) %>
+          </ul>
+          <div id="log-container">
+            <ul id="level-list">
+              <% levelList.forEach(item => { %>
+              <li><%= item %></li>
+              <% }) %>
+            </ul>
+            <div id="logs">
+            </div>
+          </div>
+        <% } %>
+      </div>
+    </div>
+  <body>
+</html>

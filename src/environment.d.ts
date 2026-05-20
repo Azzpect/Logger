@@ -3,7 +3,8 @@ declare global {
     interface ProcessEnv {
       REDIS_HOST: string,
       REDIS_PORT: number,
-      STREAM_NAME: string 
+      STREAM_NAME: string,
+      PORT: number
     }
   }
 }

@@ -12,14 +12,13 @@ const redisClient = createClient({
 
 
 async function connectToRedis() {
+  redisClient.on("error", err => {
+    console.log("Redis error: ", err);
+  })
   await redisClient.connect();
   console.log("Connected to Redis");
   lastLogId = await redisClient.get("last_log_id");
 }
-
-redisClient.on("error", err => {
-  console.log("Redis error: ", err);
-})
 
 
 async function readStream() {
