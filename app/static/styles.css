@@ -1,0 +1,136 @@
+* {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+  box-sizing: border-box;
+}
+
+:root {
+  --bg: #06141B;
+  --fg: #CCD0CF;
+}
+
+body {
+  background-color: var(--bg);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+#container {
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 15vw 1fr;
+}
+
+#sidebar {
+  width: 100%;
+  height: 100%;
+  border-right: 0.3em solid var(--fg);
+  color: var(--fg);
+  padding: 0.3em;
+}
+
+#file-list a {
+  padding: 0.5em 1.2em;
+  cursor: pointer;
+  transition: all 0.2s linear;
+  font-weight: bold;
+  width: 100%;
+  text-align: right;
+  background-color: transparent;
+  color: var(--fg);
+  font-size: 14px;
+  display: block;
+}
+
+#service-list {
+  width: 100%;
+  display: flex;
+  gap: 2%;
+  border-bottom: 0.3em solid var(--fg);
+  padding: 0 0.8em;
+}
+
+#level-list {
+  width: 100%;
+  display: flex;
+  gap: 2%;
+  padding: 0 0.8em;
+}
+
+#service-list button, #level-list button {
+  padding: 0.2em 1em;
+  transition: all 0.2s linear;
+  cursor: pointer;
+  border: none;
+  background-color: transparent;
+  color: inherit;
+  font-size: 14px;
+  font-weight: bold;
+}
+
+#service-list button:hover, #level-list button:hover, #file-list a:hover {
+  background-color: var(--fg);
+  color: var(--bg);
+}
+
+.active {
+  background-color: var(--fg) !important;
+  color: var(--bg) !important;
+}
+
+
+
+#logger {
+  width: 100%;
+  height: 100%;
+  color: var(--fg);
+  padding: 0.2em 1.5em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2em;
+}
+
+#logger h2 {
+  font-size: 3rem;
+  align-self: flex-start;
+}
+
+
+
+
+#log-container {
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+}
+
+
+
+#logs {
+  border: 0.2em solid var(--fg);
+  width: 100%;
+  height: 70vh;
+  padding: 0.6em;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+  overflow-y: scroll;
+}
+
+#log-message {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 15% 1fr;
+  gap: 0.5em;
+}
+
+#log-message p {
+  white-space: pre-wrap;
+}

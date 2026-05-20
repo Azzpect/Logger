@@ -3,7 +3,7 @@ import type { RedisResponse } from "./types.js";
 
 const host = process.env.REDIS_HOST
 const port = process.env.REDIS_PORT
-const streamName = process.env.STREAM_NAME;
+const streamName = process.env.LOGSTREAM;
 let lastLogId: string | null;
 
 const redisClient = createClient({
