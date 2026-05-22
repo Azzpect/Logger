@@ -4,6 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build": "npx tsc",
     "dev:compile": "npx tsc -w",
     "dev:run": "npx nodemon",
     "start": "npx concurrently npm:dev:*",

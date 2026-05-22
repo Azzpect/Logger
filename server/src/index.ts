@@ -14,14 +14,11 @@ await connectToRedis();
 logger();
 
 
-app.use("/public", express.static(path.join(__dirname, "../web/public")))
+app.use("/", express.static(path.join(__dirname, "./web")))
 app.use(cors({
-  origin: ["http://localhost", "http://localhost:5173"]
+  origin: "*"
 }))
 
-app.get("/", (req, res) => {
-  res.sendFile(path.join(__dirname, "../web/index.html"));
-})
 
 app.get("/get-files", (req, res) => {
   const fileList = readdirSync(logPath);

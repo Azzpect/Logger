@@ -12,6 +12,7 @@
       .then((data) => (files = data.fileList || []))
       .catch((err) => console.log(err));
   });
+  export const prerender = true;
 </script>
 
 <svelte:head>
