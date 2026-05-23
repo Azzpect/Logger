@@ -6,7 +6,7 @@
   let activeLevel: string = $derived(Object.keys(logs[activeService] ?? {})[0] ?? "");
 
   $effect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/${params.logFile}`)
+    fetch(`${import.meta.env.VITE_API_URL}/get-file?file=${params.logFile}`)
       .then((res) => {
         if (!res.ok) throw new Error("file not found");
         return res.json();

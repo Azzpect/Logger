@@ -20,16 +20,17 @@ app.use(cors({
 }))
 
 
-app.get("/get-files", (req, res) => {
+app.get("/api/get-files", (req, res) => {
   const fileList = readdirSync(logPath);
   res.json({fileList})
 })
 
-app.get("/:logfile", (req, res) => {
-  const logFile = req.params["logfile"];
+app.get("/api/get-file", (req, res) => {
+  const logFile = req.query["file"];
+  if (typeof logFile !== 'string') return res.status(400).json({msg: "invalid logFile"})
   const filePath = path.join(logPath, logFile);
   if (!existsSync(filePath)) {
-    return res.status(400).send("not found");
+    return res.status(400).json({msg: "not found"});
   }
   const content = readFileSync(filePath, { encoding: 'utf8' });
   const logs = content.split(lineSep).filter(line => line !== "").map(line => line.split(recordSep));
@@ -56,6 +57,10 @@ app.get("/:logfile", (req, res) => {
     logObj[service] = obj;
   })
   res.json({logs: logObj})
+})
+
+app.use((req, res) => {
+  res.redirect("/200.html")
 })
 
 app.listen(port, () => {
