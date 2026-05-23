@@ -24,7 +24,7 @@ FROM node:latest
 
 
 COPY --from=builder /server /logger
-COPY --from=builder /app/build /logger/web
+COPY --from=builder /app/build /logger/app/web
 
 WORKDIR /logger
 
