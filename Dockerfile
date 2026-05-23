@@ -17,16 +17,20 @@ RUN rm -rf src
 RUN rm -rf node_modules 
 RUN rm dist/*.ts
 RUN rm dist/*.ts.map
-
+RUN rm dist/*.js.map
+RUN mv dist app
 
 FROM node:latest
 
 
-COPY --from=builder /server /server
-COPY --from=builder /app/build /server/web
+COPY --from=builder /server /logger
+COPY --from=builder /app/build /logger/web
 
-WORKDIR /server
+WORKDIR /logger
+
+ENV PORT=6571
+EXPOSE 6571
 
 RUN npm install --production
 
-CMD ["npm", "run", "prod"]
+CMD ["node", "app/index.js"]
