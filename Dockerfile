@@ -29,7 +29,6 @@ COPY --from=builder /app/build /logger/web
 WORKDIR /logger
 
 ENV PORT=6571
-EXPOSE 6571
 
 RUN npm install --production
 
