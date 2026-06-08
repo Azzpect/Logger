@@ -1,17 +1,10 @@
 <script lang="ts">
   import favicon from "$lib/assets/favicon.svg";
 
+  import { fileState } from "./file.svelte";
   let { children } = $props();
+  
 
-  let files = $state([]);
-  let activeFile = $derived("");
-
-  $effect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/get-files`)
-      .then((res) => res.json())
-      .then((data) => (files = data.fileList || []))
-      .catch((err) => console.log(err));
-  });
 </script>
 
 <svelte:head>
@@ -23,8 +16,13 @@
   <div id="sidebar">
     <h2>Log Files</h2>
     <ul id="file-list">
-      {#each files as file}
-        <a class={activeFile === file ? "active" : ""} href="/{file}" onclick={() => activeFile = file}>{file}</a>
+      {#each fileState.files as file}
+        <a 
+          class={fileState.activeFile === file ? "active" : ""} href="/{file}" onclick={() => fileState.activeFile = file}
+          style={fileState.activeFile == file ? "background-color: var(--highlight);color: var(--bg);" : ""}
+          >
+          {file}
+        </a>
       {/each}
     </ul>
   </div>

@@ -1,4 +1,5 @@
 <script lang="ts">
+  import { fileState } from "../file.svelte.js";
   let { params } = $props();
 
   let logs: { [key: string]: { [key: string]: string[][] } } = $state({});
@@ -11,7 +12,10 @@
         if (!res.ok) throw new Error("file not found");
         return res.json();
       })
-      .then((data) => logs = data.logs || {})
+      .then((data) => {
+        logs = data.logs || {}
+        fileState.activeFile = params.logFile;
+      })
       .catch((err) => console.log(err));
   });
 </script>
@@ -19,7 +23,7 @@
 <div id="service-list">
   {#each Object.keys(logs) as service}
     <button
-      class={activeService === service ? "active" : ""}
+      style={activeService == service ? "background-color: var(--highlight);color: var(--bg);" : "color: var(--highlight);"}
       onclick={() => (activeService = service)}>{service}</button
     >
   {/each}
@@ -28,7 +32,7 @@
   <ul id="level-list">
     {#each Object.keys(logs[activeService] ?? {}) as level}
       <button
-        class={activeLevel === level ? "active" : ""}
+        style={activeLevel == level ? `background-color: var(--${level.toLowerCase()});color: var(--bg);` : `color: var(--${level.toLowerCase()});`}
         onclick={() => (activeLevel = level)}>{level}</button
       >
     {/each}

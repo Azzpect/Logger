@@ -3,5 +3,5 @@
   "ext": "js,json,env",
   "ignore": ["node_modules"],
   "delay": 1000,
-  "exec": "node --env-file=.env dist/index.js"
+  "exec": "node --env-file=.env.local dist/index.js"
 }
